@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var userModel = require("./users");
 const passport = require('passport');
+const localStrategy = require("passport-local")
 
+passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -17,7 +19,7 @@ router.get('/register', function (req, res, next) {
   res.render('register');
 });
 
-router.get('/profile', function (req, res, next) {
+router.get('/profile', isLoggedIn, function (req, res, next) {
   res.render('profile');
 });
 
