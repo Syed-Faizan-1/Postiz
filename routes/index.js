@@ -9,20 +9,20 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index');
+  res.render('index', {nav:true});
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('login');
+  res.render('login', {nav:false});
 });
 
 router.get('/register', function (req, res, next) {
-  res.render('register');
+  res.render('register', {nav:false});
 });
 
 router.get('/profile', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({username: req.session.passport.user});
-  res.render('profile', {user});
+  res.render('profile', {user, nav: true});
 });
 
 router.post('/fileupload', isLoggedIn, upload.single("image"), async function (req, res, next) {
