@@ -16,3 +16,4 @@ npm-debug.log*
 
 # Ignore any local configuration files
 config/local.js
+public/images/uploads/*
