@@ -4,7 +4,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/mypinterest")
 
 const userSchema = mongoose.Schema({
     username: String,
-    name: String,
+    fullName: String,
     email: String,
     password: String,
     profileImage: String,
