@@ -10,6 +10,31 @@ body {
   height: 100%;
 }
 
+.profile-link:hover{
+  filter: brightness(0.7);
+}
+
+.image-container:hover img {
+  filter: brightness(0.7);
+  cursor: pointer;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; 
+}
+.image-container:hover .icon {
+  display: flex;
+  cursor: pointer;
+}
+
+.about:hover{
+  filter: brightness(0.7);
+  cursor: pointer;
+}
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
