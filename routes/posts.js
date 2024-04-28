@@ -12,6 +12,12 @@ const postSchema = mongoose.Schema({
     postImage: String,
     title: String,
     description: String,
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "user"
+        }
+    ]
 });
 
 module.exports = mongoose.model("post", postSchema);

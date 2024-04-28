@@ -62,7 +62,31 @@ router.post('/createBoard', isLoggedIn, upload.single("postImage"), async functi
 router.get('/feed', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user }).populate('boards');
   const posts = await postModel.find().populate("user");
+  console.log(posts);
+
   res.render('feed', { user, posts, nav: true });
+});
+
+router.get('/likepost/:postId', isLoggedIn, async function (req, res) {
+  const postId = req.params.postId;
+  const user = await userModel.findOne({ username: req.session.passport.user });
+
+  try {
+    const post = await postModel.findById(postId);
+    if (post.likes.includes(user._id)) {
+      post.likes.remove(user._id);
+      await post.save();
+    } else {
+      post.likes.push(user._id)
+      await post.save();
+    }
+
+    // Redirect back to the previous page
+    res.redirect('/feed');
+  } catch (error) {
+    console.error('Error liking post:', error);
+    res.status(500).json({ error: 'Could not like the post' });
+  }
 });
 
 router.post('/createpost', isLoggedIn, upload.single("postImage"), async function (req, res, next) {
@@ -74,7 +98,6 @@ router.post('/createpost', isLoggedIn, upload.single("postImage"), async functio
     title: req.body.title,
     description: req.body.description,
   })
-  console.log(post)
   const board = user.boards.find(board => board._id.equals(req.body.board));
   if (board) {
     board.posts.push(post._id);
