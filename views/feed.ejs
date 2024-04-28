@@ -6,7 +6,7 @@
                 <div class="about w-52 h-40 bg-white rounded-lg overflow-hidden border-2 border-zinc-900">
                     <img class="w-full h-full object-cover" src="/images/uploads/<%= post.postImage%>" alt="">
                 </div>
-                <h2 class="text-xl font-semibold mt-3">By @<%= post.user.username %></h2>                
+                <h2 class="text-xl font-semibold mt-3">By <i class="ri-at-line"></i><%= post.user.username %></h2>                
                 <h3 class="inline-block text-xl font-semibold mt-3"><%= post.title %> </h3>
                 <p class="text-sm font-medium opacity-60">
                     <%= post.description %>

@@ -43,6 +43,22 @@ router.get('/add', isLoggedIn, async function (req, res, next) {
   res.render('add', { user, nav: true });
 });
 
+router.get('/addBoard', isLoggedIn, async function (req, res, next) {
+  const user = await userModel.findOne({ username: req.session.passport.user })
+  res.render('addBoard', { user, nav: true });
+});
+
+router.post('/createBoard', isLoggedIn, upload.single("postImage"), async function (req, res, next) {
+  const user = await userModel.findOne({ username: req.session.passport.user })
+  const board = await boardModel.create({
+    user: user._id,
+    title: req.body.title
+  })
+  user.boards.push(board._id);
+  await user.save(); // Assuming board is a mongoose model
+  res.redirect('profile');
+});
+
 router.get('/feed', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user }).populate('boards');
   const posts = await postModel.find().populate("user");

@@ -28,7 +28,17 @@
                         class="ri-add-circle-line"></i></a>
             </div>
         </div>
-        <div class="flex">
+        <div class="flex flex-wrap">
+            <div class="cards gap-10 pl-10 mt-10">
+                <a href="/addBoard">
+                    <div
+                        class="w-52 h-40 bg-gray-400 rounded-lg overflow-hidden border-2 border-gray-300  transition-transform hover:scale-105">
+                        <div class="flex justify-center items-center h-full"> <!-- Added h-full -->
+                            <i class="ri-folder-add-fill text-4xl text-gray-100"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
             <% user.boards.forEach(board=>{ %>
                 <div class="cards flex flex-wrap gap-10 pl-10 mt-10">
                     <div class="card">
@@ -48,17 +58,6 @@
                     </div>
                 </div>
                 <% })%>
-                    <div class="cards gap-10 px-10 mt-10">
-                        <a href="/addBoard">
-                            <div
-                                class="w-52 h-40 bg-gray-400 rounded-lg overflow-hidden border-2 border-gray-300  transition-transform hover:scale-105">
-                                <div class="flex justify-center items-center h-full"> <!-- Added h-full -->
-                                    <i class="ri-folder-add-line text-4xl text-gray-100"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
         </div>
     </div>
     <script>
