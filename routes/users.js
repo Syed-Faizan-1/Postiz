@@ -9,14 +9,10 @@ const userSchema = mongoose.Schema({
     password: String,
     profileImage: String,
     contact: Number,
-    boards: {
-        type: Array,
-        default: []
-    },
-    posts: [
+    boards: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "post"
+            ref: "board"
         }
     ]
 });

@@ -5,6 +5,10 @@ const postSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
+    board: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "board"
+    },
     postImage: String,
     title: String,
     description: String,

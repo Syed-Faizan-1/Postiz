@@ -16,29 +16,49 @@
             <h1 class="mt-5 text-2xl font-semibold">
                 <%= user.fullName%>
             </h1>
-            <h3 class="text-md"><i class="ri-at-fill"></i><%= user.username%>
+            <h3 class="text-md"><i class="ri-at-fill"></i>
+                <%= user.username%>
             </h3>
             <div class="flex items-center justify-between gap-5 mt-3">
-                <a href="/edit" class="text-2xl text-black font-semibold transition-transform hover:scale-125 hover:text-zinc-700"><i
+                <a href="/edit"
+                    class="text-2xl text-black font-semibold transition-transform hover:scale-125 hover:text-zinc-700"><i
                         class="ri-pencil-fill"></i></a>
-                <a href="/add" class="text-2xl font-semibold text-black transition-transform hover:scale-125 hover:text-zinc-700"><i
+                <a href="/add"
+                    class="text-2xl font-semibold text-black transition-transform hover:scale-125 hover:text-zinc-700"><i
                         class="ri-add-circle-line"></i></a>
             </div>
         </div>
-        <div class="cards flex flex-wrap gap-10 px-10 mt-10">
-            <div class="card">
-                <a href="/show/posts">
-                    <div
-                        class="about w-52 h-40 bg-white rounded-lg overflow-hidden border-2 border-zinc-900  transition-transform hover:scale-105">
-                        <img class="w-full h-full object-cover"
-                            src="/images/uploads/<%= user.posts[user.posts.length-1]?.postImage%>" alt="">
+        <div class="flex">
+            <% user.boards.forEach(board=>{ %>
+                <div class="cards flex flex-wrap gap-10 pl-10 mt-10">
+                    <div class="card">
+                        <a href="/board/<%= board._id %>">
+                            <div
+                                class="about w-52 h-40 bg-white rounded-lg overflow-hidden border-2 border-zinc-900  transition-transform hover:scale-105">
+                                <img class="w-full h-full object-cover"
+                                    src="/images/uploads/<%= board.posts[board.posts.length-1]?.postImage%>" alt="">
+                            </div>
+                        </a>
+                        <h3 class="inline-block text-xl font-semibold mt-3">
+                            <%= board.title %>
+                        </h3>
+                        <h5 class="text-sm font-medium opacity-60">
+                            <%= board.posts.length %> Pins
+                        </h5>
                     </div>
-                </a>
-                <h3 class="inline-block text-xl font-semibold mt-3">Your Uploaded Pins</h3>
-                <h5 class="text-sm font-medium opacity-60">
-                    <%= user.posts.length %> Pins
-                </h5>
-            </div>
+                </div>
+                <% })%>
+                    <div class="cards gap-10 px-10 mt-10">
+                        <a href="/addBoard">
+                            <div
+                                class="w-52 h-40 bg-gray-400 rounded-lg overflow-hidden border-2 border-gray-300  transition-transform hover:scale-105">
+                                <div class="flex justify-center items-center h-full"> <!-- Added h-full -->
+                                    <i class="ri-folder-add-line text-4xl text-gray-100"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
         </div>
     </div>
     <script>

@@ -11,6 +11,14 @@
                     <input id="uploadinput" class="block px-3 py-2 hidden" type="file" name="postImage">
                     <input class="block px-3 py-2 border-2 rounded-lg mt-3" type="text" placeholder="Title"
                         name="title">
+                    <select name="board" class="block px-3 py-2 border-2 rounded-lg mt-3">
+                        <option value="default" disabled selected>Select Board</option>
+                        <% user.boards.forEach(function(board) { %>
+                            <option value="<%= board._id %>">
+                                <%= board.title %>
+                            </option>
+                            <% }); %>
+                    </select>
                     <textarea class="h-72 px-3 py-2 border-2 rounded-lg mt-3" type="text" placeholder="Description"
                         name="description"></textarea>
                     <input class="px-3 py-2 rounded-lg mt-3 bg-gray-500 text-white cursor-pointer hover:bg-gray-600"
@@ -33,7 +41,7 @@
                     img.classList.add("w-full", "h-full", "object-position");
                     const uploadDiv = document.querySelector("#upload");
                     uploadDiv.innerHTML = "";
-                    uploadDiv.classList.add("border-2","border-zinc-900");
+                    uploadDiv.classList.add("border-2", "border-zinc-900");
                     uploadDiv.classList.remove("rounded-3xl");
                     uploadDiv.appendChild(img);
                 }
