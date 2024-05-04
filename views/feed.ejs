@@ -19,7 +19,7 @@
                         <p>
                             <%= post.likes.length %> <%= post.likes.length === 1 ? 'Like' : 'Likes' %>
                         </p>                        
-                        <a href="likepost/<%= post._id %>" class="<%= post.likes.includes(user._id) ? 'ri-heart-2-fill text-red-500' : 'ri-heart-line' %> text-xl hover:text-gray-600"></a>
+                        <a href="likepost/<%= post._id %>" class="<%= post.likes.includes(user._id) ? 'ri-heart-fill text-red-500' : 'ri-heart-line' %> text-xl hover:text-gray-600"></a>
                     </div>
                 </div>
                 <%}); %>
